@@ -29,14 +29,12 @@ public class BIOServer {
 
         ByteBuffer byteBuffer = ByteBuffer.allocate(5);
         while (true){
-            byte[] b = new byte[1];
+            byte[] b = new byte[5];
             int read = inputStream.read(b);
             byteBuffer.put(b);
-            if (read == 0 ) {
-                byteBuffer.flip();
-                String s = new String(byteBuffer.array(), byteBuffer.position(), byteBuffer.limit());
-                System.out.println("收到客户端数据：" + s);
-            }
+            byteBuffer.flip();
+            String s = new String(byteBuffer.array(), byteBuffer.position(), byteBuffer.limit());
+            System.out.println("收到客户端数据：" + s);
             if (read == -1){
                 System.out.println("客户端失去连接....");
                 break;
